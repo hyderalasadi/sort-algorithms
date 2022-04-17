@@ -1,1 +1,1 @@
-# Basic-Algorithms
+# Basic Algorithms

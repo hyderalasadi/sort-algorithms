@@ -1,4 +1,4 @@
-from random import choice
+from random import choice, shuffle
 
 
 def quick_sort(a, reverse=False):
@@ -42,12 +42,12 @@ def quick_sort(a, reverse=False):
 
 # driver code (test)
 if __name__ == "__main__":
-    with open('data.txt', 'r') as f:
-        data_list = f.readlines()
-    arr = [int(i) for i in data_list]
-    quick_sort(arr, reverse=False)
-    desc_test = all(i[0] == i[1] for i in zip(arr, [j for j in range(1, 10001)]))
-    quick_sort(arr, reverse=True)
-    asc_test = all(i[0] == i[1] for i in zip(arr, [j for j in range(10000, 0, -1)]))
+    length = 100000  # test list length, virtually, can be any integer
+    test_list = list(range(length))  # list of unique integers from 0 to length-1
+    shuffle(test_list)  #shuffle test list
+    quick_sort(test_list, reverse=False)
+    desc_test = all(i[0] == i[1] for i in zip(test_list, [j for j in range(length)]))
+    quick_sort(test_list, reverse=True)
+    asc_test = all(i[0] == i[1] for i in zip(test_list, [j for j in range(length)][::-1]))
     print("Descending test:", "successful" if desc_test else "unsuccessful",
           "\nAscending test:", "successful" if asc_test else "unsuccessful")

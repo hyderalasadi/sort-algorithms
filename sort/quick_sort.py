@@ -3,9 +3,9 @@ from random import choice, shuffle
 
 def quick_sort(a, reverse=False):
     """
-    Randomized quick sort, performs in-place sorting
-    :param a: array of integers
-    :param reverse: descending sort, False by default
+    Randomized quick sort, performs in-place sorting with O(nlog(n)) time complexity and O(1) auxiliary space
+    :param a: array of either all numbers or all strings
+    :param reverse: descending order, False by default
     :return sorted list
     """
 
@@ -40,9 +40,9 @@ def quick_sort(a, reverse=False):
     return a
 
 
-# driver code (test)
+# driver code for testing
 if __name__ == "__main__":
-    length = 100000  # test list length, virtually, can be any integer
+    length = 100000  # test list length, virtually, can be any positive integer
     test_list = list(range(length))  # list of unique integers from 0 to length-1
     shuffle(test_list)  #shuffle test list
     quick_sort(test_list, reverse=False)

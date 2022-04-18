@@ -3,7 +3,7 @@ from random import shuffle
 
 def merge_sort(A, reverse=False):
     """
-    Merge sort, performs in-place sorting with O(nlog(n)) time complexity and O(n) auxiliary space
+    Merge sort, performs sorting with O(nlog(n)) time complexity and O(n) auxiliary space
     :param A: array of either all numbers or all strings
     :param reverse: descending order, False by default
     """
@@ -19,8 +19,8 @@ def merge_sort(A, reverse=False):
         i = j = k = 0  # i is L index, j is right index, k is A index
 
         if not reverse:  # for ascending sort
-            while i < len(L) and j < len(R):  # copy data to temp arrays L[] and R[]
-                if L[i] < R[j]:  # use > for descending
+            while i < len(L) and j < len(R):
+                if L[i] < R[j]:  # use < for ascending
                     A[k] = L[i]
                     i += 1
                 else:
@@ -29,7 +29,7 @@ def merge_sort(A, reverse=False):
                 k += 1
 
         else:  # for descending sort
-            while i < len(L) and j < len(R):  # copy data to temp arrays L[] and R[]
+            while i < len(L) and j < len(R):
                 if L[i] > R[j]:  # use > for descending
                     A[k] = L[i]
                     i += 1

@@ -3,7 +3,8 @@ from random import shuffle
 
 def k_way_merge(A, reverse=False):
     """
-    k-way Merge, performs k-way merge of multiple arrays with O(n*klog(k)) time complexity and O(n*k) auxiliary space
+    recursive implementation of k-way merge, merges of multiple arrays with O(n*klog(k))
+    time complexity and O(n*k) auxiliary space
     :param A: list of sorted arrays of any length of either all numbers or all strings
     :param reverse: descending order, False by default
     :return one sorted array
@@ -54,7 +55,7 @@ def k_way_merge(A, reverse=False):
         mid = len(A)//2
         L = k_way_merge(A[:mid], reverse=reverse)  # merge left half
         R = k_way_merge(A[mid:], reverse=reverse)  # merge right half
-        return k_way_merge([L, R], reverse=reverse)  # merge left and right halves together
+        return k_way_merge([L, R], reverse=reverse)  # recursively merge left and right halves
 
 
 # driver code for testing

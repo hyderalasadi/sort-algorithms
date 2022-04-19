@@ -3,9 +3,10 @@ from random import shuffle
 
 def merge_sort(A, reverse=False):
     """
-    Merge sort, performs sorting with O(nlog(n)) time complexity and O(n) auxiliary space
+    recursive implementation of merge sort, performs sorting with O(nlog(n)) time complexity and O(n) auxiliary space
     :param A: array of either all numbers or all strings
     :param reverse: descending order, False by default
+    :return sorted array
     """
 
     if len(A) > 1:
@@ -47,11 +48,12 @@ def merge_sort(A, reverse=False):
             A[k] = R[j]
             j += 1
             k += 1
+    return A
 
 
 # driver code for testing
 if __name__ == "__main__":
-    length = 100000  # test list length, virtually, can be any positive integer
+    length = 1000  # test list length, virtually, can be any positive integer
     test_list = list(range(length))  # list of unique integers from 0 to length-1
     shuffle(test_list)  # shuffle test list
     merge_sort(test_list, reverse=False)

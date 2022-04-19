@@ -3,7 +3,7 @@ from random import choice, shuffle
 
 def quick_sort(A, reverse=False):
     """
-    Randomized quick sort, performs in-place sorting with O(nlog(n)) time complexity on average and O(1) auxiliary space
+    recursive implementation of randomized quick sort, performs in-place sorting with O(nlog(n)) time complexity on average and O(1) auxiliary space
     :param a: array of either all numbers or all strings
     :param reverse: descending order, False by default
     :return sorted list
@@ -22,18 +22,18 @@ def quick_sort(A, reverse=False):
     while j < len(A):
         if not reverse:
             if A[j] > pivot:  # use > for ascending
-                j += 1
+                j += 1  # check next
             else:
                 A[i], A[j] = A[j], A[i]  # swap jth element with the first of greater-than-pivot part
-                i += 1
-                j += 1
+                i += 1  # shift i to the right by one
+                j += 1  # check next
         else:
             if A[j] < pivot:  # use < for descending
-                j += 1
+                j += 1  # check next
             else:
                 A[i], A[j] = A[j], A[i]  # swap jth element with the first of greater-than-pivot part
-                i += 1
-                j += 1
+                i += 1  # shift i to the right by one
+                j += 1  # check next
     A[0], A[i - 1] = A[i - 1], A[0]  # swap pivot with the last of less-than-pivot part (put pivot in correct sequence)
     A[:i - 1] = quick_sort(A[:i - 1], reverse=reverse)  # recursively sort the left side (less-than-pivot part)
     A[i:] = quick_sort(A[i:], reverse=reverse)  # recursively sort the right side (greater-than-pivot part)
@@ -42,7 +42,7 @@ def quick_sort(A, reverse=False):
 
 # driver code for testing
 if __name__ == "__main__":
-    length = 100000  # test list length, virtually, can be any positive integer
+    length = 1000  # test list length, virtually, can be any positive integer
     test_list = list(range(length))  # list of unique integers from 0 to length-1
     shuffle(test_list)  # shuffle test list
     quick_sort(test_list, reverse=False)

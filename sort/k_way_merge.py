@@ -5,9 +5,17 @@ def k_way_merge(A, reverse=False):
     """
     recursive implementation of k-way merge, merges of multiple arrays with O(n*klog(k))
     time complexity and O(n*k) auxiliary space
-    :param A: list of sorted arrays of any length of either all numbers or all strings
-    :param reverse: descending order, False by default
-    :return one sorted array
+
+    Parameters
+    ----------
+    A : list
+        two or more sorted arrays of any length of same data type (numbers or strings)
+    reverse : boolean (False by default)
+        if True, the algorithm performs descending sort
+
+    Returns
+    -------
+    one sorted array
     """
 
     if len(A) == 1:
@@ -58,24 +66,24 @@ def k_way_merge(A, reverse=False):
         return k_way_merge([L, R], reverse=reverse)  # recursively merge left and right halves
 
 
-# driver code for testing
+# driver test code
 if __name__ == "__main__":
-    length = 100000  # test list length, virtually, can be any positive integer
+    length = 1000  # test list length, virtually, can be any positive integer
     test_list = list(range(length))  # list of unique integers from 0 to length-1
     shuffle(test_list)  # shuffle test list
-    list_1, list_2, list_3 = test_list[:length//5], test_list[length//5:length//2],\
-                                test_list[length//2:]  # split test list
 
+    list_1, list_2, list_3 = test_list[:length//5], test_list[length//5:length//2],\
+                                test_list[length//2:]  # test splits of different length
     asc_list_1, asc_list_2, asc_list_3 = sorted(list_1), sorted(list_2), sorted(list_3)  # ascending sort all splits
-    asc_test_lists = [asc_list_1, asc_list_2, asc_list_3]  # put sorted lists in one big ascending sort list
-    asc_test_list = k_way_merge(asc_test_lists, reverse=False)
-    asc_test = all(i[0] == i[1] for i in zip(asc_test_list, [j for j in range(length)]))
+    asc_test_lists = [asc_list_1, asc_list_2, asc_list_3]
+    asc_test_list = k_way_merge(asc_test_lists)
+    asc_test = asc_test_list == sorted(test_list)
 
     desc_list_1, desc_list_2, desc_list_3 = sorted(list_1, reverse=True), sorted(list_2, reverse=True),\
                                                 sorted(list_3, reverse=True)  # descending sort all splits
-    desc_test_lists = [desc_list_1, desc_list_2, desc_list_3]  # put sorted lists in one big descending sort list
+    desc_test_lists = [desc_list_1, desc_list_2, desc_list_3]
     desc_test_list = k_way_merge(desc_test_lists, reverse=True)
-    desc_test = all(i[0] == i[1] for i in zip(desc_test_list, [j for j in range(length)][::-1]))
+    desc_test = desc_test_list == sorted(test_list, reverse=True)
 
-    print("Descending test:", "successful" if desc_test else "unsuccessful",
-            "\nAscending test:", "successful" if asc_test else "unsuccessful")
+    print("Ascending test:", "OK" if asc_test else "FAILED!",
+            "\nDescending test:", "OK" if desc_test else "FAILED!")

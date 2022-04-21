@@ -1,1 +1,5 @@
+.gitignore/
 .idea/
+.DS_Store/
+sort/.DS_Store/
+.gitattributes/

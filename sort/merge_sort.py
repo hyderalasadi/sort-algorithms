@@ -3,7 +3,8 @@ from random import shuffle
 
 def merge_sort(A, reverse=False):
     """
-    recursive implementation of merge sort, performs sorting with O(nlog(n)) time complexity and O(n) auxiliary space
+    recursive implementation of merge sort, performs sorting with O(nlog(n)) time complexity
+    and O(n) auxiliary space
 
     Parameters
     ----------
@@ -62,7 +63,7 @@ def merge_sort(A, reverse=False):
 
 # driver code for testing
 if __name__ == "__main__":
-    length = 1000  # test list length, virtually, can be any positive integer
+    length = 1000  # test list length
     test_list = list(range(length))  # list of unique integers from 0 to length-1
     shuffle(test_list)  # shuffle test list
     asc_test_list = merge_sort(test_list)

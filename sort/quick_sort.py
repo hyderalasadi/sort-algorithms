@@ -3,10 +3,20 @@ from random import choice, shuffle
 
 def quick_sort(A, reverse=False):
     """
-    recursive implementation of randomized quick sort, performs in-place sorting with O(nlog(n)) time complexity on average and O(1) auxiliary space
-    :param a: array of either all numbers or all strings
-    :param reverse: descending order, False by default
-    :return sorted list
+    recursive implementation of randomized quick sort, performs in-place sorting
+    with O(nlog(n)) time complexity on average and O(1) auxiliary space
+
+    Parameters
+    ----------
+    A: list
+        array of either all numbers or all strings
+
+    reverse : boolean (False by default)
+        if True, the algorithm performs descending sort
+
+    Returns
+    -------
+    sorted array
     """
 
     if len(A) <= 1:
@@ -42,12 +52,12 @@ def quick_sort(A, reverse=False):
 
 # driver code for testing
 if __name__ == "__main__":
-    length = 1000  # test list length, virtually, can be any positive integer
+    length = 1000  # test list length
     test_list = list(range(length))  # list of unique integers from 0 to length-1
     shuffle(test_list)  # shuffle test list
-    quick_sort(test_list, reverse=False)
-    desc_test = all(i[0] == i[1] for i in zip(test_list, [j for j in range(length)]))
-    quick_sort(test_list, reverse=True)
-    asc_test = all(i[0] == i[1] for i in zip(test_list, [j for j in range(length)][::-1]))
-    print("Descending test:", "successful" if desc_test else "unsuccessful",
-          "\nAscending test:", "successful" if asc_test else "unsuccessful")
+    asc_test_list = quick_sort(test_list)
+    asc_test = asc_test_list == [j for j in range(length)]
+    desc_test_list = quick_sort(test_list, reverse=True)
+    desc_test = desc_test_list == [j for j in range(length)][::-1]
+    print("Ascending test:", "OK" if asc_test else "FAILED!",
+            "\nDescending test:", "OK" if desc_test else "FAILED!")

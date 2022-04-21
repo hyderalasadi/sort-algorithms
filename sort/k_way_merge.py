@@ -68,7 +68,7 @@ def k_way_merge(A, reverse=False):
 
 # driver test code
 if __name__ == "__main__":
-    length = 1000  # test list length, virtually, can be any positive integer
+    length = 1000  # test list length
     test_list = list(range(length))  # list of unique integers from 0 to length-1
     shuffle(test_list)  # shuffle test list
 

@@ -18,22 +18,26 @@ def insertion_sort(A, reverse=False):
     sorted array
     """
 
-    for i in range(1, len(A)):  # loop over all elemets starting from the second element
-        key = A[i]  # key is the element to be processed, initiated as the second element
-        j = i-1  # j is the index of the biggest/smallest sorted element, initiated as the frist element
+    # i is the index of the element to be processed, starts from the 2nd element
+    for i in range(1, len(A)):
+        key = A[i]  # key is the value of the element being processed, initiated as the 2nd element value
+        j = i - 1  # j is the index of the biggest(ascending)/smallest(descending) sorted element,
+                 # initiated as the 1st element
         if not reverse:
-            while j >= 0 and key < A[j]:  # if key is smaller than largest sorted element
-            	A[j + 1] = A[j]  # shift largest sorted elements to the right
-            	# compare the next largest until key is no longer smaller
-            	# or no more element to compare to (smaller than first element)
+            while j >= 0 and key < A[j]:  # if key is smaller than sorted elements
+            	A[j + 1] = A[j]  # shift bigger sorted element 1 position to the right
+            	# compare next smaller sorted element (left) until key is no longer
+			    # smaller or no more elements to compare to (smaller than 1st element)
             	j -= 1
         else:
-            while j >= 0 and key > A[j]:  # if key is bigger than smallest sorted element
-            	A[j + 1] = A[j]  # shift smallest sorted elements to the right
-            	# compare the next largest until key is no longer smaller
-            	# or no more element to compare to (smaller than first element)
+            while j >= 0 and key > A[j]:  # if key is larger than sorted elements
+            	A[j + 1] = A[j]  # shift smaller sorted element 1 position to the right
+            	# compare next bigger sorted element (left) until key is no longer
+			    # bigger or no more elements to compare to (bigger than 1st element)
             	j -= 1
-        A[j + 1] = key  # insert key in its correct place
+        # insert key in its correct place, just before the last bigger(ascending)/smaller(descending)
+		# sorted element, this position should be empty due to shifting
+        A[j + 1] = key
     return A
 
 

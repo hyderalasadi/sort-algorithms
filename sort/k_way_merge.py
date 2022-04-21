@@ -24,40 +24,40 @@ def k_way_merge(A, reverse=False):
     if len(A) == 2:
         L = A[0]
         R = A[1]
-        O = [0 for i in range(len(L) + len(R))]
+        B = [0 for i in range(len(L) + len(R))]
         i = j = k = 0
 
         if not reverse:  # for ascending sort
             while i < len(L) and j < len(R):
                 if L[i] < R[j]:  # use < for ascending
-                    O[k] = L[i]
+                    B[k] = L[i]
                     i += 1
                 else:
-                    O[k] = R[j]
+                    B[k] = R[j]
                     j += 1
                 k += 1
 
         else:  # for descending sort
             while i < len(L) and j < len(R):
                 if L[i] > R[j]:  # use > for descending
-                    O[k] = L[i]
+                    B[k] = L[i]
                     i += 1
                 else:
-                    O[k] = R[j]
+                    B[k] = R[j]
                     j += 1
                 k += 1
 
         # checking if any element was left
         while i < len(L):
-            O[k] = L[i]
+            B[k] = L[i]
             i += 1
             k += 1
 
         while j < len(R):
-            O[k] = R[j]
+            B[k] = R[j]
             j += 1
             k += 1
-        return O
+        return B
 
     if len(A) > 2:
         mid = len(A)//2
@@ -74,7 +74,9 @@ if __name__ == "__main__":
 
     list_1, list_2, list_3 = test_list[:length//5], test_list[length//5:length//2],\
                                 test_list[length//2:]  # test splits of different length
-    asc_list_1, asc_list_2, asc_list_3 = sorted(list_1), sorted(list_2), sorted(list_3)  # ascending sort all splits
+
+    asc_list_1, asc_list_2, asc_list_3 = sorted(list_1), sorted(list_2),\
+                                            sorted(list_3)  # ascending sort all splits
     asc_test_lists = [asc_list_1, asc_list_2, asc_list_3]
     asc_test_list = k_way_merge(asc_test_lists)
     asc_test = asc_test_list == sorted(test_list)

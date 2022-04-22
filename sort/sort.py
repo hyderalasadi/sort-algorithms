@@ -292,7 +292,7 @@ def heap_sort(A, reverse=False):
     Parameters
     ----------
     A: list
-        array of either all numbers or all strings
+        array of numbers
 
     reverse : boolean (False by default)
         if True, the algorithm performs descending sort

@@ -1,5 +1,5 @@
 from random import choice
-
+import heapq as hq
 
 def selection_sort(A, reverse=False):
     """
@@ -284,3 +284,33 @@ def quick_sort(A, reverse=False):
     A[:i - 1] = quick_sort(A[:i - 1], reverse=reverse)  # recursively sort the left side (less-than-pivot part)
     A[i:] = quick_sort(A[i:], reverse=reverse)  # recursively sort the right side (greater-than-pivot part)
     return A
+
+def heap_sort(A, reverse=False):
+    """
+    performs sorting using heapq module with O(nlogn)) time complexity and O(n) auxiliary space
+
+    Parameters
+    ----------
+    A: list
+        array of numbers
+
+    reverse : boolean (False by default)
+        if True, the algorithm performs descending sort
+
+    Returns
+    -------
+    sorted array
+    """
+    n = len(A)
+    if not reverse:
+        hq.heapify(A)
+        B = []
+        for i in range(n):
+            B.append(hq.heappop(A))
+    else:
+        A = [-i for i in A]
+        hq.heapify(A)
+        B = []
+        for i in range(n):
+            B.append(hq.heappop(A) * -1)
+    return B

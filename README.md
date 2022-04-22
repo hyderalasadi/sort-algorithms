@@ -1,7 +1,7 @@
 # Algorithms
 Basic algorithms implemented in Python with explanatory comments and test code.
 
-## Sort
+## Sort Module
 - Selection Sort
 - Insertion Sort
 - Bubble Sort

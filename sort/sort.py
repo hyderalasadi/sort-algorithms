@@ -303,14 +303,14 @@ def heap_sort(A, reverse=False):
     """
     n = len(A)
     if not reverse:
-        hq.heapify(A)
+        hq.heapify(A)  # heapify A using heapq heap
         B = []
         for i in range(n):
             B.append(hq.heappop(A))
     else:
-        A = [-i for i in A]
+        A = [-i for i in A]  # reverse elements signs as heapq support min-heap only
         hq.heapify(A)
         B = []
         for i in range(n):
-            B.append(hq.heappop(A) * -1)
+            B.append(hq.heappop(A) * -1)  # reverse back elements signs
     return B

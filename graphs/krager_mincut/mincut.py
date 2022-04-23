@@ -42,12 +42,12 @@ def mincut(g):
         min-cut crossing edge count and all node merges in sequence
     """
 
-    A = []  # list of merged vertices
-    while len(g) > 2:  # while there are more than 2 vertices
-        c1 = choice(range(len(g)))  # choose 1st vertex to merge (to delete)
+    A = []  # list of node merges
+    while len(g) > 2:  # while there are more than 2 nodes
+        c1 = choice(range(len(g)))  # choose 1st node to merge (to delete)
         v_del = g.pop(c1)  # pop its row
-        c2 = choice(range(1, len(v_del)))  # choose 2nd vertex to merge (adjacent)
-        v1, v2 = v_del[0], v_del[c2]  # assign vertices values
+        c2 = choice(range(1, len(v_del)))  # choose 2nd node to merge (adjacent)
+        v1, v2 = v_del[0], v_del[c2]  # assign nodes values
         A.append((v1, v2))  # append (v1, v2) to the list
         while v2 in v_del:  # remove all self-loop caused by v2
             v_del.remove(v2)
@@ -58,7 +58,7 @@ def mincut(g):
                     g[i].remove(v1)
             for j in range(len(g[i])):  # if it’s not v2 row
                 g[i][j] = v2 if g[i][j] == v1 else g[i][j]  # change v1 edge to v2
-    return len(g[0])-1, A  # g has 2 rows (vertices) w/ equal length
+    return len(g[0])-1, A  # g has 2 rows (nodes) w/ equal length
 
 # driver code
 if __name__ == "__main__":
@@ -73,7 +73,7 @@ if __name__ == "__main__":
             mincut_count = count
             mincut_merges = merges.copy()
 
-    # post-processing
+    # post-processing mincut merges sequence to extract elements of the two sides of mincut
     merged_nodes = [i[0] for i in mincut_merges]  # all merged nodes
 
     all_nodes = [i[0] for i in graph]  # all graph nodes

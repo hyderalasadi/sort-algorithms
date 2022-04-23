@@ -29,7 +29,7 @@ def create():
 
 def mincut(g):
     """
-    Krager's minimum cut algorithm implementation
+    Karger's minimum cut algorithm implementation
 
     Parameters
     ----------

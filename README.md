@@ -12,3 +12,4 @@ Basic algorithms implemented in Python with explanatory comments and test code.
 
 ## Graphs
 - Karger's Minimum Cut
+- Kosaraju's Strongly Connected Components

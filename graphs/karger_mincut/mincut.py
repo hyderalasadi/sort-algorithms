@@ -7,7 +7,7 @@ def read(file):
     Parameters
     ----------
     file : text file
-        adjacency list representation of a simple undirected graph, the first column in
+        representats adjacency list of a simple undirected graph, the first column in
         each row is a node and the rest of the row are it's adjacent nodes
 
     Return

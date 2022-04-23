@@ -21,6 +21,18 @@ class Dijkstra:
     """
 
     def __init__(self, adj_file):
+        """
+        reads text file represents adjacency list of undirected connected graph, where colunms are
+        separated by taps, first colunm is a particular node and each other colunm in the same row
+        represents a connected node and its distance separated by a comma
+
+        Attributes
+        ----------
+        _graph : dictionary
+            edges of connected graph, every node is a key, it's value is a list of tuples of all its
+            connected nodes and their distances {node: [(node1, distance1), (node2, distance2), ...]}
+        """
+
         self._graph = {}
         with open(adj_file) as file:
             for line in file:

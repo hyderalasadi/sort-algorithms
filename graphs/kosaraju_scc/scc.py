@@ -5,7 +5,7 @@ class Scc(object):
     Attributes
     ----------
         graph : dictionary
-            represents graph edges, every node is a key, it's value is all its
+            represents edges of a directed graph, every node is a key, it's value is all its
             connected nodes with -/+ sign for incoming/outgoing edges
         sizes : list
             SCC sizes in order they found
@@ -26,19 +26,19 @@ class Scc(object):
 
     def __init__(self, adj_file):
         """
-        read text file represents graph edges and converts it to a dictionary represents every
+        reads text file represents graph edges and converts it to a dictionary represents every
         node in the graph and its incoming/outgoing edges
 
         Parameters
         ----------
         adj_file : text file
-            graph adjacency list, each line is one edge represented as from-node followed by
-            to-node, separated by a space
+            adjacency list of a directed graph, each line is one edge represented as from-node
+            followed by to-node, separated by a space
 
         Attributes
         ----------
         _graph : dictionary
-            represents graph edges, every node is a key, it's value is all its
+            represents edges of a directed graph, every node is a key, it's value is all its
             connected nodes with -/+ sign for incoming/outgoing edges
         _sizes : list
             SCC sizes in order they found

@@ -58,7 +58,41 @@ def mincut(g):
                     g[i].remove(v1)
             for j in range(len(g[i])):  # if it’s not v2 row
                 g[i][j] = v2 if g[i][j] == v1 else g[i][j]  # change v1 edge to v2
-    return len(g[0])-1, A  # g has 2 rows (nodes) w/ equal length
+    return len(g[0])-1, A  # g has 2 rows (sides) with equal length (number of edges)
+
+def find_mincut_nodes(graph, mincut_merges):
+    """
+    post-processing mincut merge sequence to extract elements of the two sides of mincut
+
+    Parameters
+    ----------
+    graph : list
+        list of adjacency lists of a simple undirected graph, the first element in each
+        list is a node and the rest of the elements are it's adjacent nodes
+    mincut_merges : list
+        sequence of all merges executed by mincut algorithm
+
+    Return
+    ------
+    A, B : list
+        nodes of each side of the mincut
+    """
+
+    merged_nodes = [i[0] for i in mincut_merges]  # all merged nodes
+    all_nodes = [i[0] for i in graph]  # all graph nodes
+    unmerged_nodes = []  # last 2 nodes (unmerged)
+    for i in all_nodes:
+        if i not in merged_nodes:
+            unmerged_nodes.append(i)
+    rev_mincut_merges = [(i[1], i[0]) for i in mincut_merges[::-1]]  # reverse mincut merge sequence
+    A, B = [unmerged_nodes[0]], [unmerged_nodes[1]]  # initiate the two sides of mincut with unmerged nodes
+    for i in rev_mincut_merges:  # go over all merges
+        if i[0] in A:  # if the merged-to node in A
+            A.append(i[1])  # then the merged node is in A as well
+        elif i[0] in B:  # if the merged-to node in B
+            B.append(i[1])  # then the merged node is in B as well
+    return A, B
+
 
 # driver code
 if __name__ == "__main__":
@@ -73,23 +107,8 @@ if __name__ == "__main__":
             mincut_count = count
             mincut_merges = merges.copy()
 
-    # post-processing mincut merges sequence to extract elements of the two sides of mincut
-    merged_nodes = [i[0] for i in mincut_merges]  # all merged nodes
-
-    all_nodes = [i[0] for i in graph]  # all graph nodes
-    unmerged_nodes = []  # last 2 nodes (unmerged)
-    for i in all_nodes:
-        if i not in merged_nodes:
-            unmerged_nodes.append(i)
-
-    rev_mincut_merges = [(i[1], i[0]) for i in mincut_merges[::-1]]  # reverse mincut merge sequence
-
-    A, B = [unmerged_nodes[0]], [unmerged_nodes[1]]  # initiate the two sides of mincut with unmerged nodes
-    for i in rev_mincut_merges:  # go over all merges
-        if i[0] in A:  # if the merged-to node in A
-            A.append(i[1])  # then the merged node is in A as well
-        elif i[0] in B:  # if the merged-to node in B
-            B.append(i[1])  # then the merged node is in B as well
+    # post-processing mincut merge sequence to extract elements of the two sides of mincut
+    A, B = find_mincut_nodes(graph, mincut_merges)
 
     # value test
     correct_cut = mincut_count == 17
